@@ -2,49 +2,111 @@ import SwiftUI
 
 struct CityListView: View {
     @StateObject private var vm: CityListViewModel
-
+    
     init(service: CityServiceProtocol = CityService()) {
         _vm = StateObject(wrappedValue: CityListViewModel(service: service))
     }
-
-    var body: some View {
-        NavigationStack {
-            Group {
-                if vm.isLoading && vm.cities.isEmpty {
-                    ProgressView(String(localized: "loading.cities"))
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else if let error = vm.error, vm.cities.isEmpty {
-                    VStack(spacing: 12) {
-                        Text(error).multilineTextAlignment(.center)
-                        Button(String(localized: "action.retry")) { Task { await vm.load() } }
-                            .buttonStyle(.borderedProminent)
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else {
-                    List(vm.filtered) { city in
-                        NavigationLink {
-                            CityDetailView(city: city)
-                        } label: {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("\(city.name) (\(city.country))")
-                                    .font(.headline)
-                                Text("id: \(city.id)")
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
-                            }
+    
+    private func SearchField() -> some View {
+        HStack {
+            ZStack(alignment: .leading) {
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.secondary.opacity(0.5), lineWidth: 1)
+                    .frame(height: 40)
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.secondary)
+                    TextField(String(localized: "search.placeholder"), text: $vm.searchText)
+                }
+                .padding(.horizontal, 8)
+            }
+            if !vm.searchText.isEmpty {
+                Button(String(localized: "search.cancel")) {
+                    vm.searchText = ""
+                }
+                .foregroundColor(.blue)
+            }
+        }
+        .padding([.horizontal, .top])
+    }
+    
+    @ViewBuilder
+    private func LoadingView() -> some View {
+        ProgressView { Text(String(localized: "loading.cities")) }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    
+    @ViewBuilder
+    private func ErrorView(_ message: String) -> some View {
+        VStack(spacing: 12) {
+            Text(message).multilineTextAlignment(.center)
+            Button { Task { await vm.load() } } label: {
+                Text(String(localized: "action.retry"))
+            }
+            .buttonStyle(.borderedProminent)
+        }
+        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    
+    @ViewBuilder
+    private func CitiesList() -> some View {
+        ScrollView {
+            LazyVStack(spacing: 12) {
+                ForEach(vm.filtered) { city in
+                    NavigationLink {
+                        CityDetailView(city: city)
+                    } label: {
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("\(city.name), \(city.country)")
+                                .font(.headline)
+                            Text("lat: \(city.coord.lat), lon: \(city.coord.lon) • id: \(city.id)")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
                         }
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(RoundedRectangle(cornerRadius: 12)
+                            .fill(Color(.systemBackground))
+                            .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2))
                     }
-                    .overlay {
-                        if vm.isLoading { ProgressView().padding().background(.ultraThinMaterial).clipShape(RoundedRectangle(cornerRadius: 12)) }
-                    }
+                    .buttonStyle(.plain)
                 }
             }
-            .navigationTitle(String(localized: "title.cities"))
-            .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: String(localized: "search.placeholder"))
-            .task { await vm.load() }
-            .alert(String(localized: "error"), isPresented: .constant(vm.error != nil), actions: {
-                Button(String(localized: "ok")) { vm.error = nil }
+            .padding()
+        }
+    }
+    
+    var body: some View {
+        NavigationStack {
+            SearchField()
+            Group {
+                if vm.isLoading && vm.cities.isEmpty {
+                    LoadingView()
+                } else if let error = vm.error, vm.cities.isEmpty {
+                    ErrorView(error)
+                } else {
+                    CitiesList()
+                        .overlay {
+                            if vm.isLoading {
+                                ProgressView()
+                                    .padding()
+                                    .background(.ultraThinMaterial)
+                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                            }
+                        }
+                }
+            }
+            .navigationTitle(Text(String(localized: "title.cities")))
+            .navigationBarTitleDisplayMode(.inline)
+            .task {
+                if vm.cities.isEmpty {
+                    await vm.load()
+                }
+            }
+            .refreshable { await vm.load() }
+            .alert(Text(String(localized: "error")), isPresented: .constant(vm.error != nil), actions: {
+                Button { vm.error = nil } label: { Text(String(localized: "ok")) }
             }, message: {
                 Text(vm.error ?? "")
             })

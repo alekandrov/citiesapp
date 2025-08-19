@@ -1,12 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%@ (%@)" : {
+    "%@, %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$@ (%2$@)"
+            "value" : "%1$@, %2$@"
           }
         }
       },
@@ -65,7 +65,15 @@
         }
       }
     },
-    "id: %lld" : {
+    "lat: %lf, lon: %lf • id: %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "lat: %1$lf, lon: %2$lf • id: %3$lld"
+          }
+        }
+      },
       "shouldTranslate" : false
     },
     "loading.cities" : {
@@ -97,6 +105,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aceptar"
+          }
+        }
+      }
+    },
+    "search.cancel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
           }
         }
       }

@@ -35,7 +35,7 @@ struct SplashView: View {
         ZStack {
             Color("LaunchBackground").ignoresSafeArea()
             VStack(spacing: 12) {
-                Image("LaunchLogo")
+                Image(systemName: "map")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 120)

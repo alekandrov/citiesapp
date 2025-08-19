@@ -3,11 +3,11 @@ import MapKit
 
 struct CityDetailView: View {
     let city: City
-
+    
     private var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: city.coord.lat, longitude: city.coord.lon)
     }
-
+    
     var body: some View {
         Map(initialPosition: .region(MKCoordinateRegion(
             center: coordinate,
