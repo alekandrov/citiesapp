@@ -24,7 +24,9 @@ final class CityListViewModel: ObservableObject {
         isLoading = true
         error = nil
         do {
-            cities = try await service.fetchCities()
+            cities = try await service.fetchCities().sorted {
+                $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending
+            }
         } catch {
             self.error = "No se pudieron cargar las ciudades. \(error.localizedDescription)"
         }
