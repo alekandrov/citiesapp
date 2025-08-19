@@ -11,12 +11,12 @@ struct CityListView: View {
         NavigationStack {
             Group {
                 if vm.isLoading && vm.cities.isEmpty {
-                    ProgressView("Cargando ciudades…")
+                    ProgressView(String(localized: "loading.cities"))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else if let error = vm.error, vm.cities.isEmpty {
                     VStack(spacing: 12) {
                         Text(error).multilineTextAlignment(.center)
-                        Button("Reintentar") { Task { await vm.load() } }
+                        Button(String(localized: "action.retry")) { Task { await vm.load() } }
                             .buttonStyle(.borderedProminent)
                     }
                     .padding()
@@ -36,11 +36,11 @@ struct CityListView: View {
                     }
                 }
             }
-            .navigationTitle("Ciudades")
-            .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Filtrar")
+            .navigationTitle(String(localized: "title.cities"))
+            .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: String(localized: "search.placeholder"))
             .task { await vm.load() }
-            .alert("Error", isPresented: .constant(vm.error != nil), actions: {
-                Button("OK") { vm.error = nil }
+            .alert(String(localized: "error"), isPresented: .constant(vm.error != nil), actions: {
+                Button(String(localized: "ok")) { vm.error = nil }
             }, message: {
                 Text(vm.error ?? "")
             })
