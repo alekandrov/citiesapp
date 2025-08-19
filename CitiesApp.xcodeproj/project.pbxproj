@@ -7,40 +7,40 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
-		C64F16D92E53B8C500C600BE /* PBXContainerItemProxy */ = {
+		C6D29BD32E53A34B007B09D2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C64F16C22E53B8C400C600BE /* Project object */;
+			containerPortal = C6D29BBC2E53A349007B09D2 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C64F16C92E53B8C400C600BE;
+			remoteGlobalIDString = C6D29BC32E53A349007B09D2;
 			remoteInfo = CitiesApp;
 		};
-		C64F16E32E53B8C500C600BE /* PBXContainerItemProxy */ = {
+		C6D29BDD2E53A34B007B09D2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C64F16C22E53B8C400C600BE /* Project object */;
+			containerPortal = C6D29BBC2E53A349007B09D2 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C64F16C92E53B8C400C600BE;
+			remoteGlobalIDString = C6D29BC32E53A349007B09D2;
 			remoteInfo = CitiesApp;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C64F16CA2E53B8C400C600BE /* CitiesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CitiesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C64F16D82E53B8C500C600BE /* CitiesAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CitiesAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C64F16E22E53B8C500C600BE /* CitiesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CitiesAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6D29BC42E53A349007B09D2 /* CitiesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CitiesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6D29BD22E53A34B007B09D2 /* CitiesAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CitiesAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6D29BDC2E53A34B007B09D2 /* CitiesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CitiesAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		C64F16CC2E53B8C400C600BE /* CitiesApp */ = {
+		C6D29BC62E53A349007B09D2 /* CitiesApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = CitiesApp;
 			sourceTree = "<group>";
 		};
-		C64F16DB2E53B8C500C600BE /* CitiesAppTests */ = {
+		C6D29BD52E53A34B007B09D2 /* CitiesAppTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = CitiesAppTests;
 			sourceTree = "<group>";
 		};
-		C64F16E52E53B8C500C600BE /* CitiesAppUITests */ = {
+		C6D29BDF2E53A34B007B09D2 /* CitiesAppUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = CitiesAppUITests;
 			sourceTree = "<group>";
@@ -48,21 +48,21 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C64F16C72E53B8C400C600BE /* Frameworks */ = {
+		C6D29BC12E53A349007B09D2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C64F16D52E53B8C500C600BE /* Frameworks */ = {
+		C6D29BCF2E53A34B007B09D2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C64F16DF2E53B8C500C600BE /* Frameworks */ = {
+		C6D29BD92E53A34B007B09D2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -72,22 +72,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C64F16C12E53B8C400C600BE = {
+		C6D29BBB2E53A349007B09D2 = {
 			isa = PBXGroup;
 			children = (
-				C64F16CC2E53B8C400C600BE /* CitiesApp */,
-				C64F16DB2E53B8C500C600BE /* CitiesAppTests */,
-				C64F16E52E53B8C500C600BE /* CitiesAppUITests */,
-				C64F16CB2E53B8C400C600BE /* Products */,
+				C6D29BC62E53A349007B09D2 /* CitiesApp */,
+				C6D29BD52E53A34B007B09D2 /* CitiesAppTests */,
+				C6D29BDF2E53A34B007B09D2 /* CitiesAppUITests */,
+				C6D29BC52E53A349007B09D2 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C64F16CB2E53B8C400C600BE /* Products */ = {
+		C6D29BC52E53A349007B09D2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C64F16CA2E53B8C400C600BE /* CitiesApp.app */,
-				C64F16D82E53B8C500C600BE /* CitiesAppTests.xctest */,
-				C64F16E22E53B8C500C600BE /* CitiesAppUITests.xctest */,
+				C6D29BC42E53A349007B09D2 /* CitiesApp.app */,
+				C6D29BD22E53A34B007B09D2 /* CitiesAppTests.xctest */,
+				C6D29BDC2E53A34B007B09D2 /* CitiesAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,134 +95,134 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C64F16C92E53B8C400C600BE /* CitiesApp */ = {
+		C6D29BC32E53A349007B09D2 /* CitiesApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C64F16EC2E53B8C500C600BE /* Build configuration list for PBXNativeTarget "CitiesApp" */;
+			buildConfigurationList = C6D29BE62E53A34B007B09D2 /* Build configuration list for PBXNativeTarget "CitiesApp" */;
 			buildPhases = (
-				C64F16C62E53B8C400C600BE /* Sources */,
-				C64F16C72E53B8C400C600BE /* Frameworks */,
-				C64F16C82E53B8C400C600BE /* Resources */,
+				C6D29BC02E53A349007B09D2 /* Sources */,
+				C6D29BC12E53A349007B09D2 /* Frameworks */,
+				C6D29BC22E53A349007B09D2 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				C64F16CC2E53B8C400C600BE /* CitiesApp */,
+				C6D29BC62E53A349007B09D2 /* CitiesApp */,
 			);
 			name = CitiesApp;
 			packageProductDependencies = (
 			);
 			productName = CitiesApp;
-			productReference = C64F16CA2E53B8C400C600BE /* CitiesApp.app */;
+			productReference = C6D29BC42E53A349007B09D2 /* CitiesApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C64F16D72E53B8C500C600BE /* CitiesAppTests */ = {
+		C6D29BD12E53A34B007B09D2 /* CitiesAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C64F16EF2E53B8C500C600BE /* Build configuration list for PBXNativeTarget "CitiesAppTests" */;
+			buildConfigurationList = C6D29BE92E53A34B007B09D2 /* Build configuration list for PBXNativeTarget "CitiesAppTests" */;
 			buildPhases = (
-				C64F16D42E53B8C500C600BE /* Sources */,
-				C64F16D52E53B8C500C600BE /* Frameworks */,
-				C64F16D62E53B8C500C600BE /* Resources */,
+				C6D29BCE2E53A34B007B09D2 /* Sources */,
+				C6D29BCF2E53A34B007B09D2 /* Frameworks */,
+				C6D29BD02E53A34B007B09D2 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C64F16DA2E53B8C500C600BE /* PBXTargetDependency */,
+				C6D29BD42E53A34B007B09D2 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				C64F16DB2E53B8C500C600BE /* CitiesAppTests */,
+				C6D29BD52E53A34B007B09D2 /* CitiesAppTests */,
 			);
 			name = CitiesAppTests;
 			packageProductDependencies = (
 			);
 			productName = CitiesAppTests;
-			productReference = C64F16D82E53B8C500C600BE /* CitiesAppTests.xctest */;
+			productReference = C6D29BD22E53A34B007B09D2 /* CitiesAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C64F16E12E53B8C500C600BE /* CitiesAppUITests */ = {
+		C6D29BDB2E53A34B007B09D2 /* CitiesAppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C64F16F22E53B8C500C600BE /* Build configuration list for PBXNativeTarget "CitiesAppUITests" */;
+			buildConfigurationList = C6D29BEC2E53A34B007B09D2 /* Build configuration list for PBXNativeTarget "CitiesAppUITests" */;
 			buildPhases = (
-				C64F16DE2E53B8C500C600BE /* Sources */,
-				C64F16DF2E53B8C500C600BE /* Frameworks */,
-				C64F16E02E53B8C500C600BE /* Resources */,
+				C6D29BD82E53A34B007B09D2 /* Sources */,
+				C6D29BD92E53A34B007B09D2 /* Frameworks */,
+				C6D29BDA2E53A34B007B09D2 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C64F16E42E53B8C500C600BE /* PBXTargetDependency */,
+				C6D29BDE2E53A34B007B09D2 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				C64F16E52E53B8C500C600BE /* CitiesAppUITests */,
+				C6D29BDF2E53A34B007B09D2 /* CitiesAppUITests */,
 			);
 			name = CitiesAppUITests;
 			packageProductDependencies = (
 			);
 			productName = CitiesAppUITests;
-			productReference = C64F16E22E53B8C500C600BE /* CitiesAppUITests.xctest */;
+			productReference = C6D29BDC2E53A34B007B09D2 /* CitiesAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C64F16C22E53B8C400C600BE /* Project object */ = {
+		C6D29BBC2E53A349007B09D2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
-					C64F16C92E53B8C400C600BE = {
+					C6D29BC32E53A349007B09D2 = {
 						CreatedOnToolsVersion = 16.4;
 					};
-					C64F16D72E53B8C500C600BE = {
+					C6D29BD12E53A34B007B09D2 = {
 						CreatedOnToolsVersion = 16.4;
-						TestTargetID = C64F16C92E53B8C400C600BE;
+						TestTargetID = C6D29BC32E53A349007B09D2;
 					};
-					C64F16E12E53B8C500C600BE = {
+					C6D29BDB2E53A34B007B09D2 = {
 						CreatedOnToolsVersion = 16.4;
-						TestTargetID = C64F16C92E53B8C400C600BE;
+						TestTargetID = C6D29BC32E53A349007B09D2;
 					};
 				};
 			};
-			buildConfigurationList = C64F16C52E53B8C400C600BE /* Build configuration list for PBXProject "CitiesApp" */;
+			buildConfigurationList = C6D29BBF2E53A349007B09D2 /* Build configuration list for PBXProject "CitiesApp" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = C64F16C12E53B8C400C600BE;
+			mainGroup = C6D29BBB2E53A349007B09D2;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = C64F16CB2E53B8C400C600BE /* Products */;
+			productRefGroup = C6D29BC52E53A349007B09D2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C64F16C92E53B8C400C600BE /* CitiesApp */,
-				C64F16D72E53B8C500C600BE /* CitiesAppTests */,
-				C64F16E12E53B8C500C600BE /* CitiesAppUITests */,
+				C6D29BC32E53A349007B09D2 /* CitiesApp */,
+				C6D29BD12E53A34B007B09D2 /* CitiesAppTests */,
+				C6D29BDB2E53A34B007B09D2 /* CitiesAppUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C64F16C82E53B8C400C600BE /* Resources */ = {
+		C6D29BC22E53A349007B09D2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C64F16D62E53B8C500C600BE /* Resources */ = {
+		C6D29BD02E53A34B007B09D2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C64F16E02E53B8C500C600BE /* Resources */ = {
+		C6D29BDA2E53A34B007B09D2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -232,21 +232,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C64F16C62E53B8C400C600BE /* Sources */ = {
+		C6D29BC02E53A349007B09D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C64F16D42E53B8C500C600BE /* Sources */ = {
+		C6D29BCE2E53A34B007B09D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C64F16DE2E53B8C500C600BE /* Sources */ = {
+		C6D29BD82E53A34B007B09D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -256,20 +256,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C64F16DA2E53B8C500C600BE /* PBXTargetDependency */ = {
+		C6D29BD42E53A34B007B09D2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C64F16C92E53B8C400C600BE /* CitiesApp */;
-			targetProxy = C64F16D92E53B8C500C600BE /* PBXContainerItemProxy */;
+			target = C6D29BC32E53A349007B09D2 /* CitiesApp */;
+			targetProxy = C6D29BD32E53A34B007B09D2 /* PBXContainerItemProxy */;
 		};
-		C64F16E42E53B8C500C600BE /* PBXTargetDependency */ = {
+		C6D29BDE2E53A34B007B09D2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C64F16C92E53B8C400C600BE /* CitiesApp */;
-			targetProxy = C64F16E32E53B8C500C600BE /* PBXContainerItemProxy */;
+			target = C6D29BC32E53A349007B09D2 /* CitiesApp */;
+			targetProxy = C6D29BDD2E53A34B007B09D2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		C64F16EA2E53B8C500C600BE /* Debug */ = {
+		C6D29BE42E53A34B007B09D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -330,7 +330,7 @@
 			};
 			name = Debug;
 		};
-		C64F16EB2E53B8C500C600BE /* Release */ = {
+		C6D29BE52E53A34B007B09D2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -383,14 +383,16 @@
 			};
 			name = Release;
 		};
-		C64F16ED2E53B8C500C600BE /* Debug */ = {
+		C6D29BE72E53A34B007B09D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CitiesApp/CitiesApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -410,6 +412,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doublebond.CitiesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
@@ -420,14 +423,16 @@
 			};
 			name = Debug;
 		};
-		C64F16EE2E53B8C500C600BE /* Release */ = {
+		C6D29BE82E53A34B007B09D2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CitiesApp/CitiesApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -447,6 +452,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doublebond.CitiesApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
@@ -457,7 +463,7 @@
 			};
 			name = Release;
 		};
-		C64F16F02E53B8C500C600BE /* Debug */ = {
+		C6D29BEA2E53A34B007B09D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -479,7 +485,7 @@
 			};
 			name = Debug;
 		};
-		C64F16F12E53B8C500C600BE /* Release */ = {
+		C6D29BEB2E53A34B007B09D2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -501,7 +507,7 @@
 			};
 			name = Release;
 		};
-		C64F16F32E53B8C500C600BE /* Debug */ = {
+		C6D29BED2E53A34B007B09D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -522,7 +528,7 @@
 			};
 			name = Debug;
 		};
-		C64F16F42E53B8C500C600BE /* Release */ = {
+		C6D29BEE2E53A34B007B09D2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -546,43 +552,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C64F16C52E53B8C400C600BE /* Build configuration list for PBXProject "CitiesApp" */ = {
+		C6D29BBF2E53A349007B09D2 /* Build configuration list for PBXProject "CitiesApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C64F16EA2E53B8C500C600BE /* Debug */,
-				C64F16EB2E53B8C500C600BE /* Release */,
+				C6D29BE42E53A34B007B09D2 /* Debug */,
+				C6D29BE52E53A34B007B09D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C64F16EC2E53B8C500C600BE /* Build configuration list for PBXNativeTarget "CitiesApp" */ = {
+		C6D29BE62E53A34B007B09D2 /* Build configuration list for PBXNativeTarget "CitiesApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C64F16ED2E53B8C500C600BE /* Debug */,
-				C64F16EE2E53B8C500C600BE /* Release */,
+				C6D29BE72E53A34B007B09D2 /* Debug */,
+				C6D29BE82E53A34B007B09D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C64F16EF2E53B8C500C600BE /* Build configuration list for PBXNativeTarget "CitiesAppTests" */ = {
+		C6D29BE92E53A34B007B09D2 /* Build configuration list for PBXNativeTarget "CitiesAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C64F16F02E53B8C500C600BE /* Debug */,
-				C64F16F12E53B8C500C600BE /* Release */,
+				C6D29BEA2E53A34B007B09D2 /* Debug */,
+				C6D29BEB2E53A34B007B09D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C64F16F22E53B8C500C600BE /* Build configuration list for PBXNativeTarget "CitiesAppUITests" */ = {
+		C6D29BEC2E53A34B007B09D2 /* Build configuration list for PBXNativeTarget "CitiesAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C64F16F32E53B8C500C600BE /* Debug */,
-				C64F16F42E53B8C500C600BE /* Release */,
+				C6D29BED2E53A34B007B09D2 /* Debug */,
+				C6D29BEE2E53A34B007B09D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = C64F16C22E53B8C400C600BE /* Project object */;
+	rootObject = C6D29BBC2E53A349007B09D2 /* Project object */;
 }
