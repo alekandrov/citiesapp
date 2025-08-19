@@ -12,6 +12,9 @@
       },
       "shouldTranslate" : false
     },
+    "%lld" : {
+      "shouldTranslate" : false
+    },
     "action.retry" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -31,6 +34,53 @@
     },
     "CitiesApp" : {
       "shouldTranslate" : false
+    },
+    "city" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ciudad"
+          }
+        }
+      }
+    },
+    "city.information" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Information"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Información"
+          }
+        }
+      }
+    },
+    "coordinates" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coordenadas"
+          }
+        }
+      }
+    },
+    "country" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "País"
+          }
+        }
+      }
     },
     "error" : {
       "localizations" : {
@@ -65,6 +115,12 @@
         }
       }
     },
+    "ID" : {
+      "shouldTranslate" : false
+    },
+    "Lat" : {
+      "shouldTranslate" : false
+    },
     "lat: %lf, lon: %lf • id: %lld" : {
       "localizations" : {
         "en" : {
@@ -89,6 +145,19 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cargando ciudades…"
+          }
+        }
+      }
+    },
+    "Lon" : {
+      "shouldTranslate" : false
+    },
+    "name" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre"
           }
         }
       }

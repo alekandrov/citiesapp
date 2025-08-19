@@ -55,11 +55,20 @@ struct CityListView: View {
             LazyVStack(spacing: 12) {
                 ForEach(vm.filtered) { city in
                     NavigationLink {
-                        CityDetailView(city: city)
+                        CityMapView(city: city)
                     } label: {
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text("\(city.name), \(city.country)")
-                                .font(.headline)
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack() {
+                                Text("\(city.name), \(city.country)")
+                                    .font(.headline)
+                                Spacer()
+                                NavigationLink {
+                                    CityInfoView(city: city)
+                                } label: {
+                                    Image(systemName: "info.circle")
+                                }
+                                .buttonStyle(.bordered)
+                            }
                             Text("lat: \(city.coord.lat), lon: \(city.coord.lon) • id: \(city.id)")
                                 .font(.subheadline)
                                 .foregroundStyle(.secondary)

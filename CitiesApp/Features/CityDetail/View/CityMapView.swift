@@ -1,7 +1,7 @@
 import SwiftUI
 import MapKit
 
-struct CityDetailView: View {
+struct CityMapView: View {
     let city: City
     
     private var coordinate: CLLocationCoordinate2D {
@@ -22,5 +22,5 @@ struct CityDetailView: View {
 }
 
 #Preview {
-    CityDetailView(city: City(country: "AR", name: "Buenos Aires", id: 3435910, coord: .init(lon: -58.377232, lat: -34.613152)))
+    CityMapView(city: City(country: "AR", name: "Buenos Aires", id: 3435910, coord: .init(lon: -58.377232, lat: -34.613152)))
 }
