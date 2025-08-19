@@ -22,7 +22,7 @@ struct CityListView: View {
                     .padding()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
-                    List(vm.cities) { city in
+                    List(vm.filtered) { city in
                         VStack(alignment: .leading, spacing: 4) {
                             Text("\(city.name) (\(city.country))")
                                 .font(.headline)
@@ -37,6 +37,7 @@ struct CityListView: View {
                 }
             }
             .navigationTitle("Ciudades")
+            .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Filtrar")
             .task { await vm.load() }
             .alert("Error", isPresented: .constant(vm.error != nil), actions: {
                 Button("OK") { vm.error = nil }

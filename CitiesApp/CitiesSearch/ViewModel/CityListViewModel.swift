@@ -13,6 +13,12 @@ final class CityListViewModel: ObservableObject {
         self.service = service
     }
 
+    var filtered: [City] {
+        let q = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !q.isEmpty else { return cities }
+        return cities.filter { $0.name.range(of: q, options: [.caseInsensitive, .anchored]) != nil }
+    }
+
     func load() async {
         guard !isLoading else { return }
         isLoading = true
