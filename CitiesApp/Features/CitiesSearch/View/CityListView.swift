@@ -23,12 +23,16 @@ struct CityListView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     List(vm.filtered) { city in
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("\(city.name) (\(city.country))")
-                                .font(.headline)
-                            Text("id: \(city.id)")
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
+                        NavigationLink {
+                            CityDetailView(city: city)
+                        } label: {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("\(city.name) (\(city.country))")
+                                    .font(.headline)
+                                Text("id: \(city.id)")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                            }
                         }
                     }
                     .overlay {
