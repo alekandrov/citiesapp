@@ -22,5 +22,5 @@ struct CityDetailView: View {
 }
 
 #Preview {
-    CityDetailView(city: City(country: "AR", name: "Buenos Aires", id: 123, coord: .init(lon: -58.3816, lat: -34.6037)))
+    CityDetailView(city: City(country: "AR", name: "Buenos Aires", id: 3435910, coord: .init(lon: -58.377232, lat: -34.613152)))
 }

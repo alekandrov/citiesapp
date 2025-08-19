@@ -55,9 +55,11 @@ struct CityListView: View {
 struct MockCityService: CityServiceProtocol {
     func fetchCities() async throws -> [City] {
         [
-            City(country: "UA", name: "Hurzuf", id: 707860, coord: .init(lon: 34.283333, lat: 44.549999)),
-            City(country: "AR", name: "Buenos Aires", id: 123, coord: .init(lon: -58.3816, lat: -34.6037)),
-            City(country: "US", name: "Houston", id: 456, coord: .init(lon: -95.3698, lat: 29.7604)),
+            City(country: "US", name: "Alabama", id: 4829764, coord: .init(lon: -86.750259, lat: 32.750408)),
+            City(country: "US", name: "Albuquerque", id: 5454711, coord: .init(lon: -106.651138, lat: 35.084492)),
+            City(country: "US", name: "Anaheim", id: 5323810, coord: .init(lon: -117.914497, lat: 33.835289)),
+            City(country: "US", name: "Arizona", id: 5551752, coord: .init(lon: -111.500977, lat: 34.500301)),
+            City(country: "AU", name: "Sydney", id: 2147714, coord: .init(lon: 151.207321, lat: -33.867851)),
         ]
     }
 }
