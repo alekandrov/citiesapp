@@ -15,6 +15,38 @@
     "%lld" : {
       "shouldTranslate" : false
     },
+    "accessibility.showAllCities" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show all cities"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar todas las ciudades"
+          }
+        }
+      }
+    },
+    "accessibility.showFavoritesCities" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show favorites only"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mostrar sólo ciudades favoritas"
+          }
+        }
+      }
+    },
     "action.retry" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -66,7 +98,7 @@
       }
     },
     "Dark" : {
-
+      "shouldTranslate" : false
     },
     "error.generic" : {
       "extractionState" : "manual",
@@ -86,7 +118,7 @@
       }
     },
     "Follow System" : {
-
+      "shouldTranslate" : false
     },
     "ID" : {
       "shouldTranslate" : false
@@ -106,7 +138,7 @@
       "shouldTranslate" : false
     },
     "Light" : {
-
+      "shouldTranslate" : false
     },
     "loading.cities" : {
       "extractionState" : "manual",
@@ -130,6 +162,12 @@
     },
     "name" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",

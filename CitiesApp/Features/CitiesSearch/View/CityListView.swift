@@ -2,12 +2,15 @@ import SwiftUI
 
 struct CityListView: View {
     @Environment(\.colorScheme) private var deviceScheme
+    @Environment(\.horizontalSizeClass) private var hSize
     @EnvironmentObject private var appVM: AppViewModel
 
     @StateObject private var vm: CityListViewModel
+    
     @State private var mapCity: City?
     @State private var infoCity: City?
-    @Environment(\.horizontalSizeClass) private var hSize
+    
+    @ObservedObject private var favs = FavoritesStore.shared
     
     init(service: CityServiceProtocol = CityService()) {
         _vm = StateObject(wrappedValue: CityListViewModel(service: service))
@@ -58,6 +61,28 @@ struct CityListView: View {
     }
     
     @ViewBuilder
+    private func ShowFavButton(_ cityId: Int) -> some View {
+        Button {
+            favs.toggle(id: cityId)
+        } label: {
+            Image(systemName: favs.contains(id: cityId) ? "star.fill" : "star")
+                .foregroundStyle(favs.contains(id: cityId) ? .yellow : .secondary)
+        }
+        .buttonStyle(.bordered)
+    }
+    
+    @ViewBuilder
+    private func ShowInfoButton(_ city: City) -> some View {
+        Button {
+            infoCity = city
+        } label: {
+            Image(systemName: "info.circle")
+        }
+        .buttonStyle(.bordered)
+        .accessibilityIdentifier("infoButton_\(city.id)")
+    }
+    
+    @ViewBuilder
     private func CitiesList(selection: Binding<City?>? = nil) -> some View {
         ScrollView {
             LazyVStack(spacing: 12) {
@@ -67,13 +92,8 @@ struct CityListView: View {
                             Text("\(city.name), \(city.country)")
                                 .font(.headline)
                             Spacer()
-                            Button {
-                                infoCity = city
-                            } label: {
-                                Image(systemName: "info.circle")
-                            }
-                            .buttonStyle(.bordered)
-                            .accessibilityIdentifier("infoButton_\(city.id)")
+                            ShowFavButton(city.id)
+                            ShowInfoButton(city)
                         }
                         Text("lat: \(city.coord.lat), lon: \(city.coord.lon) • id: \(city.id)")
                             .font(.subheadline)
@@ -192,6 +212,15 @@ struct CityListView: View {
                 vm.clearSelectionIfHidden()
             }
             .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        vm.showFavorites.toggle()
+                    } label: {
+                        Image(systemName: vm.showFavorites ? "star.fill" : "star")
+                    }
+                    .accessibilityIdentifier("favFilterButton")
+                    .accessibilityLabel(vm.showFavorites ? String(localized: "accessibility.showAllCities") : String(localized: "accessibility.showFavoritesCities"))
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button { appVM.toggleTheme(deviceScheme: deviceScheme) } label: {
                         Image(systemName: appVM.iconName(deviceScheme: deviceScheme))

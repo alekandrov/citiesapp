@@ -7,6 +7,7 @@ final class CityListViewModel: ObservableObject {
     @Published private(set) var isLoading = false
     @Published var error: String?
     @Published var selected: City? = nil
+    @Published var showFavorites: Bool = false
 
     func select(_ city: City) { selected = city }
     func clearSelectionIfHidden() {
@@ -29,15 +30,25 @@ final class CityListViewModel: ObservableObject {
     
     var filtered: [City] {
         let q = normalize(searchText)
-        guard !q.isEmpty else { return cities }
-        var result: [City] = []
-        result.reserveCapacity(min(cities.count, 500))
-        for (i, norm) in namesNormalized.enumerated() {
-            if norm.hasPrefix(q) {
-                result.append(cities[i])
+
+        let base: [City]
+        if q.isEmpty {
+            base = cities
+        } else {
+            var result: [City] = []
+            result.reserveCapacity(min(cities.count, 500))
+            for (i, norm) in namesNormalized.enumerated() {
+                if norm.hasPrefix(q) { result.append(cities[i]) }
             }
+            base = result
         }
-        return result
+        
+        if showFavorites {
+            let favIDs = FavoritesStore.shared.ids
+            return base.filter { favIDs.contains($0.id) }
+        } else {
+            return base
+        }
     }
     
     func load() async {
