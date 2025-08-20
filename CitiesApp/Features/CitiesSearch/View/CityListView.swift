@@ -4,6 +4,8 @@ struct CityListView: View {
     @StateObject private var vm: CityListViewModel
     @State private var mapCity: City?
     @State private var infoCity: City?
+    @State private var selected: City?
+    @Environment(\.horizontalSizeClass) private var hSize
     
     init(service: CityServiceProtocol = CityService()) {
         _vm = StateObject(wrappedValue: CityListViewModel(service: service))
@@ -42,7 +44,8 @@ struct CityListView: View {
     @ViewBuilder
     private func ErrorView(_ message: String) -> some View {
         VStack(spacing: 12) {
-            Text(message).multilineTextAlignment(.center)
+            Text(String(localized: "error.generic")).multilineTextAlignment(.center)
+            Text(message).font(.caption2).multilineTextAlignment(.center)
             Button { Task { await vm.load() } } label: {
                 Text(String(localized: "action.retry"))
             }
@@ -53,7 +56,7 @@ struct CityListView: View {
     }
     
     @ViewBuilder
-    private func CitiesList() -> some View {
+    private func CitiesList(selection: Binding<City?>? = nil) -> some View {
         ScrollView {
             LazyVStack(spacing: 12) {
                 ForEach(vm.filtered) { city in
@@ -83,7 +86,11 @@ struct CityListView: View {
                     )
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        mapCity = city
+                        if let selection {
+                            selection.wrappedValue = city
+                        } else {
+                            mapCity = city
+                        }
                     }
                     .buttonStyle(.plain)
                     .accessibilityElement(children: .ignore)
@@ -97,22 +104,72 @@ struct CityListView: View {
     
     var body: some View {
         NavigationStack {
-            SearchField()
-            Group {
-                if vm.isLoading && vm.cities.isEmpty {
-                    LoadingView()
-                } else if let error = vm.error, vm.cities.isEmpty {
-                    ErrorView(error)
-                } else {
-                    CitiesList()
-                        .overlay {
-                            if vm.isLoading {
-                                ProgressView()
-                                    .padding()
-                                    .background(.ultraThinMaterial)
-                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            GeometryReader { geo in
+                let isWide = (hSize == .regular) || (geo.size.width > geo.size.height)
+                if isWide {
+                    HStack(spacing: 0) {
+                        // Left column: search + list with selection
+                        VStack(spacing: 0) {
+                            SearchField()
+                            Group {
+                                if vm.isLoading && vm.cities.isEmpty {
+                                    LoadingView()
+                                } else if let error = vm.error, vm.cities.isEmpty {
+                                    ErrorView(error)
+                                } else {
+                                    CitiesList(selection: $selected)
+                                        .overlay {
+                                            if vm.isLoading {
+                                                ProgressView()
+                                                    .padding()
+                                                    .background(.ultraThinMaterial)
+                                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                                            }
+                                        }
+                                }
                             }
                         }
+                        .frame(width: max(320, geo.size.width * 0.45))
+
+                        Divider()
+
+                        // Right column: map detail updates with selection
+                        Group {
+                            if let sel = selected {
+                                CityMapView(city: sel)
+                                    .id(sel.id) // forces map to recenter on selection change
+                            } else {
+                                ContentUnavailableView {
+                                    Label(String(localized: "CitiesApp"), systemImage: "map")
+                                } description: {
+                                    Text(String(localized: "select.city"))
+                                }
+                            }
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
+                } else {
+                    VStack(spacing: 0) {
+                        SearchField()
+                        Group {
+                            if vm.isLoading && vm.cities.isEmpty {
+                                LoadingView()
+                            } else if let error = vm.error, vm.cities.isEmpty {
+                                ErrorView(error)
+                            } else {
+                                // In compact, tapping a cell navigates to map via mapCity binding
+                                CitiesList()
+                                    .overlay {
+                                        if vm.isLoading {
+                                            ProgressView()
+                                                .padding()
+                                                .background(.ultraThinMaterial)
+                                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                        }
+                                    }
+                            }
+                        }
+                    }
                 }
             }
             .navigationTitle(Text(String(localized: "title.cities")))
@@ -129,11 +186,11 @@ struct CityListView: View {
             .navigationDestination(item: $infoCity) { city in
                 CityInfoView(city: city)
             }
-            .alert(Text(String(localized: "error")), isPresented: .constant(vm.error != nil), actions: {
-                Button { vm.error = nil } label: { Text(String(localized: "ok")) }
-            }, message: {
-                Text(vm.error ?? "")
-            })
+            .onChange(of: vm.filtered.map(\.id)) { _, _ in
+                if let sel = selected, !vm.filtered.contains(where: { $0.id == sel.id }) {
+                    selected = nil
+                }
+            }
         }
     }
 }

@@ -43,7 +43,7 @@ final class CityListViewModel: ObservableObject {
             }
             namesNormalized = cities.map { normalize($0.name) }
         } catch {
-            self.error = "No se pudieron cargar las ciudades. \(error.localizedDescription)"
+            self.error = "\(error.localizedDescription)"
         }
         isLoading = false
     }
