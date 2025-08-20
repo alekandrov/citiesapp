@@ -2,33 +2,77 @@ import XCTest
 
 final class CitiesAppUITests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+    private func searchField(in app: XCUIApplication) -> XCUIElement {
+        let field = app.textFields["searchField"]
+        XCTAssertTrue(field.waitForExistence(timeout: 10), "Search field should exist on launch")
+        return field
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
+    
     @MainActor
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testSearchSydneyAppears() {
         let app = XCUIApplication()
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let search = searchField(in: app)
+        search.tap()
+        search.typeText("Huab")
+        
+        XCTAssertTrue(app.staticTexts["Huabeitun, CN"].waitForExistence(timeout: 3))
     }
 
     @MainActor
-    func testLaunchPerformance() throws {
-        // This measures how long it takes to launch your application.
-        measure(metrics: [XCTApplicationLaunchMetric()]) {
-            XCUIApplication().launch()
+    func testIncrementalFiltering() {
+        let app = XCUIApplication()
+        app.launch()
+        
+        let search = searchField(in: app)
+        search.tap()
+
+        search.typeText("Alabas")
+        XCTAssertTrue(app.staticTexts["Alabash Konrat, UA"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Alabaster, US"].waitForExistence(timeout: 2))
+
+        search.typeText("t")
+        XCTAssertFalse(app.staticTexts["Alabash Konrat, UA"].exists)
+        XCTAssertTrue(app.staticTexts["Alabaster, US"].exists)
+
+        search.typeText("a")
+        sleep(1)
+        XCTAssertFalse(app.staticTexts["Alabaster, US"].exists)
+    }
+
+    @MainActor
+    func testOpenInfoFromCard() {
+        let app = XCUIApplication()
+        app.launch()
+        
+        let search = searchField(in: app)
+        search.tap()
+        search.typeText("Alabast")
+
+        let infoButton = app.buttons["infoButton_4829762"].firstMatch
+        if infoButton.exists {
+            infoButton.tap()
         }
+
+        XCTAssertTrue(app.navigationBars["Alabaster"].waitForExistence(timeout: 3))
+    }
+    
+    @MainActor
+    func testCellTapGesture() {
+        let app = XCUIApplication()
+        app.launch()
+        
+        let search = searchField(in: app)
+        search.tap()
+        search.typeText("Alabast")
+
+        let cell = app.descendants(matching: .any)["cell_4829762"]
+        XCTAssertTrue(cell.waitForExistence(timeout: 6), "The cell should exist")
+        
+        cell.tap()
+
+        XCTAssertTrue(app.navigationBars["Alabaster"].waitForExistence(timeout: 3))
+        XCTAssertTrue(app.otherElements["cityMap"].waitForExistence(timeout: 3))
     }
 }

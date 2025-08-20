@@ -2,6 +2,8 @@ import SwiftUI
 
 struct CityListView: View {
     @StateObject private var vm: CityListViewModel
+    @State private var mapCity: City?
+    @State private var infoCity: City?
     
     init(service: CityServiceProtocol = CityService()) {
         _vm = StateObject(wrappedValue: CityListViewModel(service: service))
@@ -17,6 +19,7 @@ struct CityListView: View {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.secondary)
                     TextField(String(localized: "search.placeholder"), text: $vm.searchText)
+                        .accessibilityIdentifier("searchField")
                 }
                 .padding(.horizontal, 8)
             }
@@ -54,32 +57,38 @@ struct CityListView: View {
         ScrollView {
             LazyVStack(spacing: 12) {
                 ForEach(vm.filtered) { city in
-                    NavigationLink {
-                        CityMapView(city: city)
-                    } label: {
-                        VStack(alignment: .leading, spacing: 8) {
-                            HStack() {
-                                Text("\(city.name), \(city.country)")
-                                    .font(.headline)
-                                Spacer()
-                                NavigationLink {
-                                    CityInfoView(city: city)
-                                } label: {
-                                    Image(systemName: "info.circle")
-                                }
-                                .buttonStyle(.bordered)
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Text("\(city.name), \(city.country)")
+                                .font(.headline)
+                            Spacer()
+                            Button {
+                                infoCity = city
+                            } label: {
+                                Image(systemName: "info.circle")
                             }
-                            Text("lat: \(city.coord.lat), lon: \(city.coord.lon) • id: \(city.id)")
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
+                            .buttonStyle(.bordered)
+                            .accessibilityIdentifier("infoButton_\(city.id)")
                         }
-                        .padding()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(RoundedRectangle(cornerRadius: 12)
+                        Text("lat: \(city.coord.lat), lon: \(city.coord.lon) • id: \(city.id)")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
                             .fill(Color(.systemBackground))
-                            .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2))
+                            .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+                    )
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        mapCity = city
                     }
                     .buttonStyle(.plain)
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityAddTraits(.isButton)
+                    .accessibilityIdentifier("cell_\(city.id)")
                 }
             }
             .padding()
@@ -114,6 +123,12 @@ struct CityListView: View {
                 }
             }
             .refreshable { await vm.load() }
+            .navigationDestination(item: $mapCity) { city in
+                CityMapView(city: city)
+            }
+            .navigationDestination(item: $infoCity) { city in
+                CityInfoView(city: city)
+            }
             .alert(Text(String(localized: "error")), isPresented: .constant(vm.error != nil), actions: {
                 Button { vm.error = nil } label: { Text(String(localized: "ok")) }
             }, message: {

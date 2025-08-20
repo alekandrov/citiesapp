@@ -45,23 +45,6 @@
         }
       }
     },
-    "city.information" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Information"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Información"
-          }
-        }
-      }
-    },
     "coordinates" : {
       "localizations" : {
         "es" : {

@@ -15,6 +15,7 @@ struct CityMapView: View {
         ))) {
             Marker(city.name, coordinate: coordinate)
         }
+        .accessibilityIdentifier("cityMap")
         .edgesIgnoringSafeArea(.all)
         .navigationTitle(city.name)
         .navigationBarTitleDisplayMode(.inline)
