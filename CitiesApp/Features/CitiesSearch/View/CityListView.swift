@@ -1,10 +1,12 @@
 import SwiftUI
 
 struct CityListView: View {
+    @Environment(\.colorScheme) private var deviceScheme
+    @EnvironmentObject private var appVM: AppViewModel
+
     @StateObject private var vm: CityListViewModel
     @State private var mapCity: City?
     @State private var infoCity: City?
-    @State private var selected: City?
     @Environment(\.horizontalSizeClass) private var hSize
     
     init(service: CityServiceProtocol = CityService()) {
@@ -117,7 +119,7 @@ struct CityListView: View {
                                 } else if let error = vm.error, vm.cities.isEmpty {
                                     ErrorView(error)
                                 } else {
-                                    CitiesList(selection: $selected)
+                                    CitiesList(selection: $vm.selected)
                                         .overlay {
                                             if vm.isLoading {
                                                 ProgressView()
@@ -135,7 +137,7 @@ struct CityListView: View {
 
                         // Right column: map detail updates with selection
                         Group {
-                            if let sel = selected {
+                            if let sel = vm.selected {
                                 CityMapView(city: sel)
                                     .id(sel.id) // forces map to recenter on selection change
                             } else {
@@ -187,10 +189,22 @@ struct CityListView: View {
                 CityInfoView(city: city)
             }
             .onChange(of: vm.filtered.map(\.id)) { _, _ in
-                if let sel = selected, !vm.filtered.contains(where: { $0.id == sel.id }) {
-                    selected = nil
+                vm.clearSelectionIfHidden()
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button { appVM.toggleTheme(deviceScheme: deviceScheme) } label: {
+                        Image(systemName: appVM.iconName(deviceScheme: deviceScheme))
+                    }
+                    .accessibilityLabel(appVM.accessibilityLabel(deviceScheme: deviceScheme))
+                    .contextMenu {
+                        Button("Follow System") { appVM.resetToSystem() }
+                        Button("Light") { appVM.theme = .light }
+                        Button("Dark") { appVM.theme = .dark }
+                    }
                 }
             }
+            .preferredColorScheme(appVM.appliedScheme())
         }
     }
 }
@@ -209,4 +223,5 @@ struct MockCityService: CityServiceProtocol {
 
 #Preview {
     CityListView(service: MockCityService())
+        .environmentObject(AppViewModel())
 }

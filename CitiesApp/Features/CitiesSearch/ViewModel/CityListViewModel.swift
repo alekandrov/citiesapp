@@ -6,6 +6,14 @@ final class CityListViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published private(set) var isLoading = false
     @Published var error: String?
+    @Published var selected: City? = nil
+
+    func select(_ city: City) { selected = city }
+    func clearSelectionIfHidden() {
+        if let sel = selected, !filtered.contains(where: { $0.id == sel.id }) {
+            selected = nil
+        }
+    }
     
     private let service: CityServiceProtocol
     
