@@ -15,9 +15,6 @@
       },
       "shouldTranslate" : false
     },
-    "%lld" : {
-      "shouldTranslate" : false
-    },
     "accessibility.showAllCities" : {
       "localizations" : {
         "en" : {
@@ -72,16 +69,28 @@
     },
     "city" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "City details"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ciudad"
+            "value" : "Detalles de la ciudad"
           }
         }
       }
     },
     "coordinates" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coordinates"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
@@ -90,8 +99,30 @@
         }
       }
     },
-    "country" : {
+    "country.currency" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Currency"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Moneda"
+          }
+        }
+      }
+    },
+    "country.name" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Country"
+          }
+        },
         "es" : {
           "stringUnit" : {
             "state" : "translated",

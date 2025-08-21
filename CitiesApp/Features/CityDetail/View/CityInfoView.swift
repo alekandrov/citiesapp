@@ -1,13 +1,18 @@
 import SwiftUI
 
 struct CityInfoView: View {
-    let city: City
+    @StateObject private var vm: CityInfoViewModel
+    
+    init(city: City) {
+        _vm = StateObject(wrappedValue: CityInfoViewModel(city: city))
+    }
+
     
     @ViewBuilder
     private func CountryFlag() -> some View {
         HStack {
             Spacer()
-            AsyncImage(url: URL(string: "https://flaglog.com/codes/standardized-rectangle-120px/\(city.country).png")) { image in
+            AsyncImage(url: vm.flagURL()) { image in
                 image
                     .resizable()
                     .frame(width: 180, height: 120)
@@ -24,14 +29,15 @@ struct CityInfoView: View {
         Form {
             Section(header: CountryFlag()) {}
             Section(header: Text(String(localized: "city"))) {
-                HStack { Text(String(localized: "name")); Spacer(); Text(city.name) }
-                HStack { Text(String(localized: "country")); Spacer(); Text(city.country) }
-                HStack { Text("ID"); Spacer(); Text("\(city.id)") }
+                HStack { Text(String(localized: "name")); Spacer(); Text(vm.city.name) }
+                HStack { Text(String(localized: "country.name")); Spacer(); Text(vm.countryName()); Text(vm.city.country) }
+                HStack { Text(String(localized: "country.currency")); Spacer(); Text(vm.currencyName()) }
+                HStack { Text("ID"); Spacer(); Text(String(format: "%d", vm.city.id)) }
             }
             Section(header: Text(String(localized: "coordinates"))) {
-                HStack { Text("Lat"); Spacer(); Text(String(format: "%.5f", city.coord.lat)) }
-                HStack { Text("Lon"); Spacer(); Text(String(format: "%.5f", city.coord.lon)) }
-                CityMapView(city: city)
+                HStack { Text("Lat"); Spacer(); Text(String(format: "%.5f", vm.city.coord.lat)) }
+                HStack { Text("Lon"); Spacer(); Text(String(format: "%.5f", vm.city.coord.lon)) }
+                CityMapView(city: vm.city)
                     .frame(height: 300)
             }
         }
