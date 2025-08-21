@@ -198,7 +198,7 @@ struct CityListView: View {
                     }
                 }
             }
-            .navigationTitle(Text(String(localized: "title.cities")))
+            .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
             .task {
                 if vm.cities.isEmpty {
@@ -216,18 +216,29 @@ struct CityListView: View {
                 vm.clearSelectionIfHidden()
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text(String(localized: "title.cities"))
+                        .font(.largeTitle).bold()
+                        .accessibilityIdentifier("navTitle")
+                }
+                
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
                         vm.showFavorites.toggle()
                     } label: {
                         Image(systemName: vm.showFavorites ? "star.fill" : "star")
+                            .font(.title2)
+                            .foregroundStyle(vm.showFavorites ? Color.yellow : Color.primary)
+                            .frame(width: 32, height: 32)
                     }
                     .accessibilityIdentifier("favFilterButton")
                     .accessibilityLabel(vm.showFavorites ? String(localized: "accessibility.showAllCities") : String(localized: "accessibility.showFavoritesCities"))
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
+
                     Button { appVM.toggleTheme(deviceScheme: deviceScheme) } label: {
                         Image(systemName: appVM.iconName(deviceScheme: deviceScheme))
+                            .font(.title2)
+                            .foregroundStyle(Color.primary)
+                            .frame(width: 32, height: 32)
                     }
                     .accessibilityLabel(appVM.accessibilityLabel(deviceScheme: deviceScheme))
                     .contextMenu {
