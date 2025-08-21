@@ -7,9 +7,6 @@ struct CityListView: View {
 
     @StateObject private var vm: CityListViewModel
     
-    @State private var mapCity: City?
-    @State private var infoCity: City?
-    
     @FocusState private var searchFocused: Bool
     
     init(service: CityServiceProtocol = CityService()) {
@@ -80,7 +77,7 @@ struct CityListView: View {
     @ViewBuilder
     private func ShowInfoButton(_ city: City) -> some View {
         Button {
-            infoCity = city
+            vm.didTapInfo(for: city)
         } label: {
             Image(systemName: "info.circle")
                 .foregroundStyle(Color.secondary)
@@ -121,7 +118,7 @@ struct CityListView: View {
                         if let selection {
                             selection.wrappedValue = city
                         } else {
-                            mapCity = city
+                            vm.didTapMap(for: city)
                         }
                     }
                     .buttonStyle(.plain)
@@ -225,12 +222,14 @@ struct CityListView: View {
                 }
                 await vm.load()
             }
-            .navigationDestination(item: $mapCity) { city in
-                CityMapView(city: city)
-            }
-            .navigationDestination(item: $infoCity) { city in
-                CityInfoView(city: city)
-                    .environmentObject(vm)
+            .navigationDestination(item: $vm.route) { route in
+                switch route {
+                case .map(let city):
+                    CityMapView(city: city)
+                case .info(let city):
+                    CityInfoView(city: city)
+                        .environmentObject(vm)
+                }
             }
             .onChange(of: vm.filtered.map(\.id)) { _, _ in
                 vm.clearSelectionIfHidden()

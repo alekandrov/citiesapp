@@ -1,5 +1,17 @@
 import Foundation
 
+enum CityRoute: Identifiable, Hashable {
+    case map(City)
+    case info(City)
+
+    var id: String {
+        switch self {
+        case .map(let c): return "map-\(c.id)"
+        case .info(let c): return "info-\(c.id)"
+        }
+    }
+}
+
 @MainActor
 final class CityListViewModel: ObservableObject {
     @Published private(set) var cities: [City] = []
@@ -8,6 +20,7 @@ final class CityListViewModel: ObservableObject {
     @Published var error: String?
     @Published var selected: City? = nil
     @Published var showFavorites: Bool = false
+    @Published var route: CityRoute?
 
     func select(_ city: City) { selected = city }
     func clearSelectionIfHidden() {
@@ -77,5 +90,13 @@ final class CityListViewModel: ObservableObject {
             self.error = "\(error.localizedDescription)"
         }
         isLoading = false
+    }
+    
+    func didTapMap(for city: City) {
+        route = .map(city)
+    }
+
+    func didTapInfo(for city: City) {
+        route = .info(city)
     }
 }
