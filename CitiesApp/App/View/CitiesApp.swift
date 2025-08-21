@@ -38,7 +38,7 @@ struct SplashView: View {
         ZStack {
             Color("LaunchBackground").ignoresSafeArea()
             VStack(spacing: 12) {
-                Image(systemName: "map")
+                Image("ic_map")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 120)
@@ -48,4 +48,8 @@ struct SplashView: View {
             }
         }
     }
+}
+
+#Preview {
+    SplashView()
 }
