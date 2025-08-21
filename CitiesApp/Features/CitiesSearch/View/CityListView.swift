@@ -132,7 +132,9 @@ struct CityListView: View {
                     HStack(spacing: 0) {
                         // Left column: search + list with selection
                         VStack(spacing: 0) {
-                            SearchField()
+                            if !(vm.isLoading && vm.cities.isEmpty) {
+                                SearchField()
+                            }
                             Group {
                                 if vm.isLoading && vm.cities.isEmpty {
                                     LoadingView()
@@ -172,7 +174,9 @@ struct CityListView: View {
                     }
                 } else {
                     VStack(spacing: 0) {
-                        SearchField()
+                        if !(vm.isLoading && vm.cities.isEmpty) {
+                            SearchField()
+                        }
                         Group {
                             if vm.isLoading && vm.cities.isEmpty {
                                 LoadingView()
