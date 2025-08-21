@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+      "shouldTranslate" : false
+    },
     "%@, %@" : {
       "localizations" : {
         "en" : {
@@ -41,7 +44,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Mostrar sólo ciudades favoritas"
           }
         }
@@ -126,12 +129,12 @@
     "Lat" : {
       "shouldTranslate" : false
     },
-    "lat: %lf, lon: %lf • id: %lld" : {
+    "lat: %@  lon: %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "lat: %1$lf, lon: %2$lf • id: %3$lld"
+            "value" : "lat: %1$@  lon: %2$@"
           }
         }
       },

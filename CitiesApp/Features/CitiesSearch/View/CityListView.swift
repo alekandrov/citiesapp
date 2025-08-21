@@ -69,6 +69,7 @@ struct CityListView: View {
                 .foregroundStyle(favs.contains(id: cityId) ? .yellow : .secondary)
         }
         .buttonStyle(.bordered)
+        .tint(.primary.opacity(0.0))
     }
     
     @ViewBuilder
@@ -77,6 +78,7 @@ struct CityListView: View {
             infoCity = city
         } label: {
             Image(systemName: "info.circle")
+                .foregroundStyle(Color.secondary)
         }
         .buttonStyle(.bordered)
         .accessibilityIdentifier("infoButton_\(city.id)")
@@ -87,23 +89,26 @@ struct CityListView: View {
         ScrollView {
             LazyVStack(spacing: 12) {
                 ForEach(vm.filtered) { city in
-                    VStack(alignment: .leading, spacing: 8) {
-                        HStack {
-                            Text("\(city.name), \(city.country)")
-                                .font(.headline)
-                            Spacer()
-                            ShowFavButton(city.id)
-                            ShowInfoButton(city)
+                    HStack() {
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack {
+                                Text("\(city.name), \(city.country)")
+                                    .font(.headline)
+                                
+                            }
+                            Text("lat: \(Text(String(format: "%.5f", city.coord.lat)))  lon: \(Text(String(format: "%.5f", city.coord.lon)))")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
                         }
-                        Text("lat: \(city.coord.lat), lon: \(city.coord.lon) • id: \(city.id)")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
+                        Spacer()
+                        ShowFavButton(city.id)
+                        ShowInfoButton(city)
                     }
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(Color(.systemBackground))
+                            .fill(.primary.opacity(0.05))
                             .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
                     )
                     .contentShape(Rectangle())
