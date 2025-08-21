@@ -14,14 +14,22 @@ struct CityInfoView: View {
         ZStack(alignment: .topTrailing) {
             HStack {
                 Spacer()
-                AsyncImage(url: vm.flagURL()) { image in
-                    image
+                if let url = vm.flagURL() {
+                    AsyncImage(url: url) { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .border(Color.gray)
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .frame(width: 180, height: 120)
+                } else {
+                    Image(systemName: "flag.slash")
                         .resizable()
-                        .frame(width: 180, height: 120)
                         .scaledToFit()
-                        .border(Color.gray)
-                } placeholder: {
-                    ProgressView()
+                        .frame(width: 64, height: 48)
+                        .foregroundStyle(.secondary)
                 }
                 Spacer()
             }
