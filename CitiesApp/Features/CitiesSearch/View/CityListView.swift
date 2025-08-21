@@ -126,6 +126,13 @@ struct CityListView: View {
                     .accessibilityAddTraits(.isButton)
                     .accessibilityIdentifier("cell_\(city.id)")
                 }
+                if vm.filtered.isEmpty {
+                    ContentUnavailableView {
+                        Label(String(localized: "CitiesApp"), systemImage: "map")
+                    } description: {
+                        Text(String(localized: "no.cities.found"))
+                    }
+                }
             }
             .padding()
         }
@@ -173,10 +180,12 @@ struct CityListView: View {
                                 CityMapView(city: sel)
                                     .id(sel.id) // forces map to recenter on selection change
                             } else {
-                                ContentUnavailableView {
-                                    Label(String(localized: "CitiesApp"), systemImage: "map")
-                                } description: {
-                                    Text(String(localized: "select.city"))
+                                if (!vm.filtered.isEmpty) {
+                                    ContentUnavailableView {
+                                        Label(String(localized: "CitiesApp"), systemImage: "map")
+                                    } description: {
+                                        Text(String(localized: "select.city"))
+                                    }
                                 }
                             }
                         }
