@@ -9,12 +9,8 @@ final class CityService: CityServiceProtocol {
     private let url: URL
 
     init(session: URLSession = .shared) {
+        self.url = AppConfig.citiesURL
         self.session = session
-        guard let urlString = Bundle.main.object(forInfoDictionaryKey: "CitiesURL") as? String,
-              let url = URL(string: urlString) else {
-            fatalError("CitiesURL key missing or invalid in Info.plist")
-        }
-        self.url = url
     }
 
     func fetchCities() async throws -> [City] {

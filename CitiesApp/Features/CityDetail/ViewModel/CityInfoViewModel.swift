@@ -9,12 +9,9 @@ final class CityInfoViewModel: ObservableObject {
     }
 
     func flagURL() -> URL? {
-        guard let urlString = Bundle.main.object(forInfoDictionaryKey: "FlagsURL") as? String else {
-            assertionFailure("Missing FlagsURL in Info.plist")
-            return nil
-        }
         let code = city.country.uppercased()
-        guard let url = URL(string: String(format: urlString, code)) else {
+        let urlString = String(format: AppConfig.flagsURLTemplate, code)
+        guard let url = URL(string: urlString) else {
             assertionFailure("Invalid FlagsURL template or produced URL: \(urlString)")
             return nil
         }
