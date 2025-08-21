@@ -35,20 +35,16 @@ El proyecto sigue el patrón **MVVM**:
 
 1. Clonar el repositorio:  
    ```bash
-   git clone https://github.com/usuario/citiesapp.git
+   git clone https://github.com/alekandrov/citiesapp.git
    cd citiesapp
    ```  
 
 2. Abrir el proyecto en Xcode:  
    ```bash
    open CitiesApp.xcodeproj
-   ```  
+   ```    
 
-3. Configurar las URLs en `AppConfig`:  
-   - `citiesURL`: URL del JSON de ciudades.  
-   - `flagsURL`: plantilla para banderas (ej: `"https://flaglog.com/codes/standardized-rectangle-120px/%@.png"`).  
-
-4. Ejecutar en el simulador.  
+3. Ejecutar en el simulador.  
 
 ## 🧪 Tests
 
@@ -70,9 +66,9 @@ Ejecutar los tests:
 
 ## 📄 Requisitos
 
-- Xcode 15+  
-- iOS 17+  
-- Swift 5.9+  
+- Xcode 16.4+  
+- iOS 18.5+  
+- Swift 6.1+  
 
 ## 📌 Próximos pasos / Mejoras
 
