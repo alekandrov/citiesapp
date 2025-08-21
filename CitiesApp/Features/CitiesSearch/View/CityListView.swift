@@ -10,6 +10,8 @@ struct CityListView: View {
     @State private var mapCity: City?
     @State private var infoCity: City?
     
+    @FocusState private var searchFocused: Bool
+    
     @ObservedObject private var favs = FavoritesStore.shared
     
     init(service: CityServiceProtocol = CityService()) {
@@ -27,6 +29,9 @@ struct CityListView: View {
                         .foregroundColor(.secondary)
                     TextField(String(localized: "search.placeholder"), text: $vm.searchText)
                         .accessibilityIdentifier("searchField")
+                        .autocorrectionDisabled(true)
+                        .textInputAutocapitalization(.never)
+                        .focused($searchFocused)
                 }
                 .padding(.horizontal, 8)
             }
@@ -127,6 +132,9 @@ struct CityListView: View {
             }
             .padding()
         }
+        .scrollDismissesKeyboard(.interactively)
+        .simultaneousGesture(DragGesture().onChanged { _ in if searchFocused { searchFocused = false } })
+        .onTapGesture { if searchFocused { searchFocused = false } }
     }
     
     var body: some View {
@@ -210,7 +218,13 @@ struct CityListView: View {
                     await vm.load()
                 }
             }
-            .refreshable { await vm.load() }
+            .refreshable {
+                await MainActor.run {
+                    searchFocused = false
+                    vm.searchText = ""
+                }
+                await vm.load()
+            }
             .navigationDestination(item: $mapCity) { city in
                 CityMapView(city: city)
             }
