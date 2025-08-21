@@ -12,8 +12,6 @@ struct CityListView: View {
     
     @FocusState private var searchFocused: Bool
     
-    @ObservedObject private var favs = FavoritesStore.shared
-    
     init(service: CityServiceProtocol = CityService()) {
         _vm = StateObject(wrappedValue: CityListViewModel(service: service))
     }
@@ -68,10 +66,12 @@ struct CityListView: View {
     @ViewBuilder
     private func ShowFavButton(_ cityId: Int) -> some View {
         Button {
-            favs.toggle(id: cityId)
+            vm.toggleFavorite(cityId)
         } label: {
-            Image(systemName: favs.contains(id: cityId) ? "star.fill" : "star")
-                .foregroundStyle(favs.contains(id: cityId) ? .yellow : .secondary)
+            Image(systemName: vm.isFavorite(cityId) ? "star.fill" : "star")
+                .resizable()
+                .frame(width: 24, height: 24)
+                .foregroundStyle(vm.isFavorite(cityId) ? .yellow : .secondary)
         }
         .buttonStyle(.bordered)
         .tint(.primary.opacity(0.0))
@@ -230,6 +230,7 @@ struct CityListView: View {
             }
             .navigationDestination(item: $infoCity) { city in
                 CityInfoView(city: city)
+                    .environmentObject(vm)
             }
             .onChange(of: vm.filtered.map(\.id)) { _, _ in
                 vm.clearSelectionIfHidden()

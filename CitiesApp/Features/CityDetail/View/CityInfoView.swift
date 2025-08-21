@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CityInfoView: View {
+    @EnvironmentObject var vmList: CityListViewModel
     @StateObject private var vm: CityInfoViewModel
     
     init(city: City) {
@@ -10,19 +11,34 @@ struct CityInfoView: View {
     
     @ViewBuilder
     private func CountryFlag() -> some View {
-        HStack {
-            Spacer()
-            AsyncImage(url: vm.flagURL()) { image in
-                image
-                    .resizable()
-                    .frame(width: 180, height: 120)
-                    .scaledToFit()
-                    .border(Color.gray)
-            } placeholder: {
-                ProgressView()
+        ZStack(alignment: .topTrailing) {
+            HStack {
+                Spacer()
+                AsyncImage(url: vm.flagURL()) { image in
+                    image
+                        .resizable()
+                        .frame(width: 180, height: 120)
+                        .scaledToFit()
+                        .border(Color.gray)
+                } placeholder: {
+                    ProgressView()
+                }
+                Spacer()
             }
-            Spacer()
-        }.padding(.top, 16)
+            favoriteButton()
+        }
+    }
+    
+    @ViewBuilder
+    private func favoriteButton() -> some View {
+        Button {
+            vmList.toggleFavorite(vm.city.id)
+        } label: {
+            Image(systemName: vmList.isFavorite(vm.city.id) ? "star.fill" : "star")
+                .resizable()
+                .frame(width: 24, height: 24)
+                .foregroundStyle(vmList.isFavorite(vm.city.id) ? .yellow : .secondary)
+        }
     }
     
     var body: some View {
@@ -47,4 +63,10 @@ struct CityInfoView: View {
 
 #Preview("CityInfoView") {
     CityInfoView(city: City(country: "AR", name: "Buenos Aires", id: 3435910, coord: .init(lon: -58.377232, lat: -34.613152)))
+        .environmentObject(
+            CityListViewModel(
+                service: MockCityService(),
+                favorites: UserDefaultsFavoritesRepository()
+            )
+        )
 }

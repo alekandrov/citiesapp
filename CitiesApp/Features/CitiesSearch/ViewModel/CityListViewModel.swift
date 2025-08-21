@@ -17,6 +17,7 @@ final class CityListViewModel: ObservableObject {
     }
     
     private let service: CityServiceProtocol
+    private let favorites: FavoritesRepository
     
     private var namesNormalized: [String] = []
     
@@ -24,8 +25,10 @@ final class CityListViewModel: ObservableObject {
         s.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current)
     }
     
-    init(service: CityServiceProtocol = CityService()) {
+    init(service: CityServiceProtocol = CityService(),
+         favorites: FavoritesRepository = UserDefaultsFavoritesRepository()) {
         self.service = service
+        self.favorites = favorites
     }
     
     var filtered: [City] {
@@ -44,11 +47,20 @@ final class CityListViewModel: ObservableObject {
         }
         
         if showFavorites {
-            let favIDs = FavoritesStore.shared.ids
+            let favIDs = favorites.allIDs()
             return base.filter { favIDs.contains($0.id) }
         } else {
             return base
         }
+    }
+    
+    func toggleFavorite(_ id: Int) {
+        favorites.toggle(id: id)
+        objectWillChange.send()
+    }
+
+    func isFavorite(_ id: Int) -> Bool {
+        favorites.isFavorite(id: id)
     }
     
     func load() async {
